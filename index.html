@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#000000" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>AR Optics — Lens Ray Diagram</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div id="splash">
+      <h1>AR Optics</h1>
+      <p class="tagline">Walk through a lens ray diagram in your room.</p>
+      <div id="splash-status">Checking WebXR support…</div>
+      <div id="ar-button-slot"></div>
+      <details class="how-to">
+        <summary>How to use</summary>
+        <ol>
+          <li>Open in <strong>Chrome on Android</strong> (with ARCore) or a WebXR-capable headset browser.</li>
+          <li>Tap <strong>Enter AR</strong>, then <strong>tap a wall</strong> to place the screen.</li>
+          <li>Tap again at any point in front of the wall to place the <strong>lens</strong>. Focal length is set automatically (F = ½ wall-to-lens distance).</li>
+          <li>The phone is the <strong>object</strong> — walk closer/farther to see the image change. Toggle <strong>Convex / Concave</strong> at any time.</li>
+          <li>Tap <strong>Snap</strong> to freeze the scene; the candle and 3 principal rays appear so you can walk around the diagram. Tap <strong>Resume Aim</strong> to keep moving.</li>
+        </ol>
+      </details>
+    </div>
+
+    <div id="overlay" aria-hidden="true">
+      <div id="status-pill">Tap a wall to place the screen</div>
+
+      <div id="top-card" data-state="hidden">
+        <div id="props-line" class="props">—</div>
+      </div>
+
+      <div id="data-layer"></div>
+
+      <div id="bottom-stack" data-state="hidden">
+        <div id="bottom-card">
+          <div class="row"><span class="k">Object</span><span class="v" id="object-pos">—</span></div>
+          <div class="row"><span class="k">Image</span><span class="v" id="image-pos">—</span></div>
+          <div class="row"><span class="k">Focal length F</span><span class="v" id="focal-len">—</span></div>
+        </div>
+        <div id="lens-toggle" class="segmented" role="tablist" aria-label="Lens type">
+          <button type="button" data-lens="convex" class="active">Convex</button>
+          <button type="button" data-lens="concave">Concave</button>
+        </div>
+        <button id="primary-btn" type="button" class="primary">Place Wall</button>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
